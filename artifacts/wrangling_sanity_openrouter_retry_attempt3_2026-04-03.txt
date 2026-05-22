@@ -1,0 +1,35 @@
+=== Sanity Check OpenRouter Retry Attempt 3 ===
+timestamp=2026-04-03T20:25:08.009552
+module_path=/home/eduardo/code/reproducao-artigo/tcc/code/generated/wrangling_retry_openrouter_meta_llama_llama_3_3_70b_instruct_attempt3_2026-04-03_2022.py
+import_status=ok
+gps_events: base_path=s3a://transport/silver/gps_events
+gps_events: cols=33 names=['event_id', 'event_ts', 'created_at_origem', 'created_at_ingestao', 'sequencial', 'cod_linha', 'prefixo_linha', 'cod_veiculo', 'prefixo_veiculo', 'cod_garagem', 'cod_operador', 'cod_tabela_programacao', 'viagem_sentido', 'status_ignicao', 'status_panico', 'gps_idx', 'gps_timestamp_utc_geracao', 'gps_sinal', 'latitude_raw', 'longitude_raw', 'latitude', 'longitude', 'velocidade', 'direcao', 'numero_satelites', 'hdop', 'pdop', 'odometro_calculado', 'lat_erro', 'lon_erro', 'event_dt', 'tipo_mensagem', 'id_empresa']
+gps_events: rows=7
+stop_events: base_path=s3a://transport/silver/stop_events
+stop_events: cols=30 names=['event_id', 'event_ts', 'created_at_origem', 'created_at_ingestao', 'sequencial', 'cod_linha', 'prefixo_linha', 'cod_veiculo', 'prefixo_veiculo', 'cod_garagem', 'cod_operador', 'cod_tabela_programacao', 'viagem_sentido', 'status_ignicao', 'status_panico', 'id_ponto', 'evento_ponto', 'gps_idx', 'gps_sinal', 'latitude_raw', 'longitude_raw', 'latitude', 'longitude', 'velocidade', 'direcao', 'numero_satelites', 'odometro_calculado', 'event_dt', 'tipo_mensagem', 'id_empresa']
+stop_events: rows=2
+fare_events: base_path=s3a://transport/silver/fare_events
+fare_events: cols=28 names=['event_id', 'event_ts', 'created_at_origem', 'created_at_ingestao', 'sequencial', 'cod_linha', 'prefixo_linha', 'cod_veiculo', 'prefixo_veiculo', 'cod_garagem', 'cod_operador', 'cod_tabela_programacao', 'viagem_sentido', 'status_ignicao', 'status_panico', 'gps_idx', 'gps_sinal', 'latitude_raw', 'longitude_raw', 'latitude', 'longitude', 'velocidade', 'direcao', 'numero_satelites', 'odometro_calculado', 'event_dt', 'tipo_mensagem', 'id_empresa']
+fare_events: rows=9499
+operational_events: base_path=s3a://transport/silver/operational_events
+operational_events: cols=28 names=['event_id', 'event_ts', 'created_at_origem', 'created_at_ingestao', 'sequencial', 'cod_linha', 'prefixo_linha', 'cod_veiculo', 'prefixo_veiculo', 'cod_garagem', 'cod_operador', 'cod_tabela_programacao', 'viagem_sentido', 'status_ignicao', 'status_panico', 'gps_idx', 'gps_sinal', 'latitude_raw', 'longitude_raw', 'latitude', 'longitude', 'velocidade', 'direcao', 'numero_satelites', 'odometro_calculado', 'event_dt', 'tipo_mensagem', 'id_empresa']
+operational_events: rows=4
+build_final_table_status=error
+error_type=AnalysisException
+error_message=Cannot specify window frame for lag function.
+traceback=
+Traceback (most recent call last):
+  File "<stdin>", line 79, in <module>
+  File "/home/eduardo/code/reproducao-artigo/tcc/code/generated/wrangling_retry_openrouter_meta_llama_llama_3_3_70b_instruct_attempt3_2026-04-03_2022.py", line 91, in build_final_table
+    final_table = final_table.select(gps_events["event_dt"].alias("event_dt"),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/eduardo/code/reproducao-artigo/tcc/code/.venv/lib/python3.12/site-packages/pyspark/sql/dataframe.py", line 3229, in select
+    jdf = self._jdf.select(self._jcols(*cols))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/eduardo/code/reproducao-artigo/tcc/code/.venv/lib/python3.12/site-packages/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/eduardo/code/reproducao-artigo/tcc/code/.venv/lib/python3.12/site-packages/pyspark/errors/exceptions/captured.py", line 185, in deco
+    raise converted from None
+pyspark.errors.exceptions.captured.AnalysisException: Cannot specify window frame for lag function.
+

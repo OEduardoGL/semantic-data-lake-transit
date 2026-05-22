@@ -1,0 +1,15 @@
+# FinalTable Materialization
+- timestamp: 2026-04-03T22:19:02.104441
+- wrangling_module: `/home/eduardo/code/reproducao-artigo/tcc/code/generated/wrangling_retry_openai_gpt_4o_attempt2_2026-04-03_1943.py`
+- output_path: `s3a://transport/gold/final_table`
+- write_mode: `overwrite`
+- gold_format: `parquet`
+- date_from: `None`
+- date_to: `None`
+- dry_run: `False`
+- silver_tables_loaded: `ok`
+- wrangling_execution: `ok`
+- llm_contract_columns: `['event_dt', 'cod_linha', 'cod_veiculo', 'janela_5min', 'headway_observado_min', 'headway_referencia_min', 'atraso_aproximado_min']`
+- gold_refinement: `deterministic_enrichment`
+- final_columns: `['event_dt', 'cod_linha', 'cod_veiculo', 'id_empresa', 'viagem_sentido', 'janela_5min', 'latitude_media', 'longitude_media', 'velocidade_media', 'gps_invalid_pct', 'qtd_eventos_gps', 'qtd_eventos_stop', 'max_satelites', 'headway_observado_min', 'headway_referencia_min', 'atraso_aproximado_min']`
+- write_status: `ok`

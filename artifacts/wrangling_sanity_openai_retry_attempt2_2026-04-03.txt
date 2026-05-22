@@ -1,0 +1,19 @@
+=== Sanity Check OpenAI Retry Attempt 2 ===
+timestamp=2026-04-03T19:44:54.274097
+module_path=/home/eduardo/code/reproducao-artigo/tcc/code/generated/wrangling_retry_openai_gpt_4o_attempt2_2026-04-03_1943.py
+import_status=ok
+gps_events: base_path=s3a://transport/silver/gps_events
+gps_events: cols=33 names=['event_id', 'event_ts', 'created_at_origem', 'created_at_ingestao', 'sequencial', 'cod_linha', 'prefixo_linha', 'cod_veiculo', 'prefixo_veiculo', 'cod_garagem', 'cod_operador', 'cod_tabela_programacao', 'viagem_sentido', 'status_ignicao', 'status_panico', 'gps_idx', 'gps_timestamp_utc_geracao', 'gps_sinal', 'latitude_raw', 'longitude_raw', 'latitude', 'longitude', 'velocidade', 'direcao', 'numero_satelites', 'hdop', 'pdop', 'odometro_calculado', 'lat_erro', 'lon_erro', 'event_dt', 'tipo_mensagem', 'id_empresa']
+gps_events: rows=7
+stop_events: base_path=s3a://transport/silver/stop_events
+stop_events: cols=30 names=['event_id', 'event_ts', 'created_at_origem', 'created_at_ingestao', 'sequencial', 'cod_linha', 'prefixo_linha', 'cod_veiculo', 'prefixo_veiculo', 'cod_garagem', 'cod_operador', 'cod_tabela_programacao', 'viagem_sentido', 'status_ignicao', 'status_panico', 'id_ponto', 'evento_ponto', 'gps_idx', 'gps_sinal', 'latitude_raw', 'longitude_raw', 'latitude', 'longitude', 'velocidade', 'direcao', 'numero_satelites', 'odometro_calculado', 'event_dt', 'tipo_mensagem', 'id_empresa']
+stop_events: rows=2
+fare_events: base_path=s3a://transport/silver/fare_events
+fare_events: cols=28 names=['event_id', 'event_ts', 'created_at_origem', 'created_at_ingestao', 'sequencial', 'cod_linha', 'prefixo_linha', 'cod_veiculo', 'prefixo_veiculo', 'cod_garagem', 'cod_operador', 'cod_tabela_programacao', 'viagem_sentido', 'status_ignicao', 'status_panico', 'gps_idx', 'gps_sinal', 'latitude_raw', 'longitude_raw', 'latitude', 'longitude', 'velocidade', 'direcao', 'numero_satelites', 'odometro_calculado', 'event_dt', 'tipo_mensagem', 'id_empresa']
+fare_events: rows=9499
+operational_events: base_path=s3a://transport/silver/operational_events
+operational_events: cols=28 names=['event_id', 'event_ts', 'created_at_origem', 'created_at_ingestao', 'sequencial', 'cod_linha', 'prefixo_linha', 'cod_veiculo', 'prefixo_veiculo', 'cod_garagem', 'cod_operador', 'cod_tabela_programacao', 'viagem_sentido', 'status_ignicao', 'status_panico', 'gps_idx', 'gps_sinal', 'latitude_raw', 'longitude_raw', 'latitude', 'longitude', 'velocidade', 'direcao', 'numero_satelites', 'odometro_calculado', 'event_dt', 'tipo_mensagem', 'id_empresa']
+operational_events: rows=4
+build_final_table_status=ok
+final_columns=['event_dt', 'cod_linha', 'cod_veiculo', 'janela_5min', 'headway_observado_min', 'headway_referencia_min', 'atraso_aproximado_min']
+final_rows=9512

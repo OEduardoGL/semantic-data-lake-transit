@@ -1,0 +1,2 @@
+model_name,split_strategy,prediction_horizon,row_count_total,row_count_train,row_count_val,row_count_test,mae,rmse,wape,medae,mape_secondary,global_baseline
+baseline_median_future_by_line_timeband,temporal_70_15_15,next_window_same_line_vehicle,371929,260350,55789,55790,0.5689832121662348,3.7125587454304187,1.06703796102359,0.0033092122653978276,56.41388329688783,0.0

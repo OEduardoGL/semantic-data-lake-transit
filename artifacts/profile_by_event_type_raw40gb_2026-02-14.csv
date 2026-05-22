@@ -1,0 +1,17 @@
+tipo,records,pct_invalid_gps,pct_null_codLinha,pct_null_codVeiculo,pct_null_jornada_codOperador,pct_null_viagem_sentido,pct_with_gps_array,main_payload_detected
+AVL_EVT_POSICIONAMENTO,8240609,30.05,0.0,0.0,14.27,19.03,100.0,avlHeader.gps[]
+AVL_EVT_ENTRADA_SAIDA_PONTO,5576593,12.84,0.0,0.0,2.84,6.27,100.0,avlEventoEntradaSaidaPonto
+AVL_EVT_RECEBIMENTO_TABELA_PARCIAL,4774039,21.09,0.01,0.0,48.45,50.62,100.0,avlEventoTabelaParcial
+AVL_EVT_PASSAGEM_CARTAO,2434106,17.34,0.0,0.0,4.03,0.41,100.0,avlEventoPassagemCartao
+AVL_EVT_ABERTURA_FECHAMENTO_VIAGEM,225167,9.39,0.0,0.0,0.35,0.0,100.0,avlEventoAberturaFechamentoViagem
+AVL_EVT_RECARGA,103107,17.34,0.0,0.0,4.78,0.03,100.0,avlEventoRecarga
+AVL_EVT_BLOQUEIO_CARTAO,45184,22.57,0.0,0.0,9.35,0.01,100.0,avlEventoBloqueioCartao
+AVL_EVT_FECHAMENTO_JORNADA,40439,13.37,0.0,0.0,1.99,100.0,100.0,avlEventoFechamentoJornada
+AVL_EVT_CATRACA_45_GRAUS,24701,5.28,0.0,0.0,0.44,1.6,100.0,avlEventoCatraca45Graus
+AVL_EVT_ABERTURA_JORNADA,23421,9.39,0.0,0.0,0.9,100.0,100.0,avlEventoAberturaJornada
+AVL_EVT_LIGA_DESLIGA,9555,31.33,0.33,0.0,47.89,33.69,100.0,avlEventoLigaDesliga
+AVL_EVT_SELECAO_TABELA,8129,8.48,0.0,0.0,100.0,100.0,100.0,avlEventoSelecaoTabela
+AVL_EVT_USU_ACAO_REALIZADA,3866,99.82,0.0,0.0,99.82,0.0,100.0,avlEventoUsuAcaoRealizada
+AVL_EVT_PASSAGEM_TICKET,3168,12.97,0.0,0.0,5.21,0.09,100.0,avlEventoPassagemTicket
+AVL_EVT_BOTAO_PANICO,745,11.41,0.0,0.0,27.52,31.81,100.0,avlEventoBotaoPanico
+AVL_EVT_VEICULO_INICIALIZADO,244,11.48,1.64,0.0,100.0,100.0,100.0,avlEventoVeiculoInicializado

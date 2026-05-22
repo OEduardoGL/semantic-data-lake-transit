@@ -1,0 +1,26 @@
+# Neo4j Block B Validation - 2026-02-17
+
+## Query
+MATCH (o:Ontology {id:'tcc:OntologiaTransporte'}) RETURN o.id AS ontology;
+MATCH (:SemanticClass) RETURN count(*) AS classes;
+MATCH (:SemanticProperty) RETURN count(*) AS properties;
+MATCH (:SemanticRule) RETURN count(*) AS rules;
+MATCH (:SilverTable) RETURN count(*) AS tables;
+MATCH (:SemanticMapping {id:'semantic_mapping'}) RETURN 'ok' AS mapping_loaded;
+MATCH (d:SemanticRulesDoc {id:'regras_semanticas_md'}) RETURN d.line_count AS line_count;
+
+## Output
+ontology
+"tcc:OntologiaTransporte"
+classes
+13
+properties
+22
+rules
+3
+tables
+4
+mapping_loaded
+"ok"
+line_count
+53

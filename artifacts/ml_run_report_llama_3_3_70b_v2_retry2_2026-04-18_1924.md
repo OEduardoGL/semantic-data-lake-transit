@@ -1,0 +1,20 @@
+# ML Run Report
+- timestamp: `2026-04-18T19:25:11.903140`
+- model_label: `llama_3_3_70b_v2_retry2`
+- source_file: `/home/eduardo/code/reproducao-artigo/tcc/code/generated/ml_retry_openrouter_meta_llama_llama_3_3_70b_instruct_attempt2_2026-04-18_1922.py`
+- input_path: `s3a://transport/gold/final_table`
+- elapsed_sec: `0.672754`
+- mae: `0.8664479033898808`
+- rmse: `3.3816938985205978`
+- wape: `1.6327712648195731`
+- medae: `0.3154411762508365`
+- mape_secondary: `None`
+- baseline_mae: `0.5306609211337548`
+- baseline_rmse: `3.4663886117414284`
+- baseline_wape: `1.0`
+- baseline_medae: `None`
+- baseline_mape_secondary: `None`
+- metrics_csv: `/home/eduardo/code/reproducao-artigo/tcc/artifacts/metrics_ml_llama_3_3_70b_v2_retry2_2026-04-18_1924.csv`
+- predictions_csv: `/home/eduardo/code/reproducao-artigo/tcc/artifacts/predictions_llama_3_3_70b_v2_retry2_2026-04-18_1924.csv`
+- neo4j_line_hour_csv: `/home/eduardo/code/reproducao-artigo/tcc/artifacts/neo4j_metrics_line_hour_llama_3_3_70b_v2_retry2_2026-04-18_1924.csv`
+- neo4j_vehicle_day_csv: `/home/eduardo/code/reproducao-artigo/tcc/artifacts/neo4j_metrics_vehicle_day_llama_3_3_70b_v2_retry2_2026-04-18_1924.csv`

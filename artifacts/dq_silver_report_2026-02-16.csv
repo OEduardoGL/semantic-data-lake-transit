@@ -1,0 +1,5 @@
+table_name,run_ts_blockA,rows_total,event_dt_min,event_dt_max,key_rule,duplicate_rows,status_blockA,coords_non_null_rows,coords_null_rows,invalid_coord_pair_rows,pct_invalid_coord_pair,status_blockB,null_cod_linha_pct,null_cod_veiculo_pct,null_cod_tabela_programacao_pct,null_viagem_sentido_pct,invalid_numeric_total_rows,status_blockC,status_overall
+fare_events,20260216T144818Z,2434106,2023-02-28,2023-03-01,event_id+gps_idx,0,ok,2231291,202815,0,0.000000,ok,0.000000,0.000000,0.190542,0.413252,0,ok,ok
+gps_events,20260216T144245Z,38678181,2023-02-28,2023-03-02,event_id+gps_idx,0,ok,34333418,4344763,0,0.000000,ok,0.002340,0.000000,10.531242,14.314409,0,ok,ok
+operational_events,20260216T144818Z,5261765,2023-02-28,2023-03-02,event_id+gps_idx,0,ok,4797359,464406,0,0.000000,ok,0.010339,0.000000,41.605488,47.376517,0,ok,ok
+stop_events,20260216T144818Z,11484461,2023-02-28,2023-03-02,event_id+gps_idx,0,ok,10613634,870827,0,0.000000,ok,0.000000,0.000000,2.432139,5.742795,0,ok,ok

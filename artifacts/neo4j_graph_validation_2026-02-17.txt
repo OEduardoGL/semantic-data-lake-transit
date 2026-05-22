@@ -1,0 +1,30 @@
+# Neo4j Graph Validation - 2026-02-17 18:00
+
+## Q1 - Resumo semantico
+MATCH (o:Ontology {id:'tcc:OntologiaTransporte'})
+    OPTIONAL MATCH (o)-[:HAS_CLASS]->(c:SemanticClass)
+    OPTIONAL MATCH (o)-[:HAS_PROPERTY]->(p:SemanticProperty)
+    OPTIONAL MATCH (o)-[:HAS_RULE]->(r:SemanticRule)
+    OPTIONAL MATCH (m:SemanticMapping {id:'semantic_mapping'})-[:MAPS_TABLE]->(t:SilverTable)
+    RETURN o.id AS ontology,
+           count(DISTINCT c) AS classes,
+           count(DISTINCT p) AS properties,
+           count(DISTINCT r) AS rules,
+           count(DISTINCT t) AS silver_tables
+
+[{'ontology': 'tcc:OntologiaTransporte', 'classes': 13, 'properties': 22, 'rules': 3, 'silver_tables': 4}]
+
+## Q2 - Tabela Silver -> Classe semantica
+MATCH (m:SemanticMapping {id:'semantic_mapping'})-[:MAPS_TABLE]->(t:SilverTable)
+    OPTIONAL MATCH (t)-[:MAPS_TO_CLASS]->(c:SemanticClass)
+    RETURN t.name AS silver_table, c.id AS semantic_class
+    ORDER BY silver_table
+
+[{'silver_table': 'fare_events', 'semantic_class': 'tcc:EventoTarifa'}, {'silver_table': 'gps_events', 'semantic_class': 'tcc:EventoGPS'}, {'silver_table': 'operational_events', 'semantic_class': 'tcc:EventoOperacional'}, {'silver_table': 'stop_events', 'semantic_class': 'tcc:EventoParada'}]
+
+## Q3 - Regras semanticas por prioridade
+MATCH (r:SemanticRule)
+    RETURN r.id AS id, r.code AS code, r.priority AS priority
+    ORDER BY priority ASC
+
+[{'id': 'tcc:RegraFallbackChaves', 'code': 'R_FALLBACK_KEYS_01', 'priority': 1}, {'id': 'tcc:RegraTimestampCanonico', 'code': 'R_CANONICAL_TS_01', 'priority': 2}, {'id': 'tcc:RegraGPSInvalido', 'code': 'R_GPS_INVALID_01', 'priority': 3}]

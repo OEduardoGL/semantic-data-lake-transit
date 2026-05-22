@@ -1,0 +1,2 @@
+model_name,source_file,input_path,elapsed_sec,mae,rmse,wape,medae,mape_secondary,baseline_mae,baseline_rmse,baseline_wape,baseline_medae,baseline_mape_secondary,row_count_predictions
+openai_gpt_4o_v2_retry3,/home/eduardo/code/reproducao-artigo/tcc/code/generated/ml_retry_openai_gpt_4o_attempt3_2026-04-18_1943.py,s3a://transport/gold/final_table,1.258766,1.0265557211952976,3.4723683998823884,1.491725357506267,0.4306405398153287,,0.6881667030929887,3.570374741259342,1.0,,,54981

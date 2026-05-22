@@ -1,0 +1,2 @@
+model_name,source_file,input_path,elapsed_sec,mae,rmse,wape,medae,mape_secondary,baseline_mae,baseline_rmse,baseline_wape,baseline_medae,baseline_mape_secondary,row_count_predictions
+llama_3_3_70b_v2_retry2,/home/eduardo/code/reproducao-artigo/tcc/code/generated/ml_retry_openrouter_meta_llama_llama_3_3_70b_instruct_attempt2_2026-04-18_1922.py,s3a://transport/gold/final_table,0.672754,0.8664479033898808,3.3816938985205978,1.6327712648195731,0.3154411762508365,,0.5306609211337548,3.4663886117414284,1.0,,,55807

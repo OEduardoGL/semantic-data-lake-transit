@@ -1,0 +1,37 @@
+# Local environments
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Local effective configs
+code/config.yaml
+RUN_LOG.md
+
+# Data and storage volumes
+*.jsonl
+*.parquet
+*.orc
+*.avro
+*.db
+*.sqlite
+infra/minio-data/
+infra/neo4j-data/
+checkpoints/
+warehouse/
+
+# Heavy experiment outputs
+artifacts/predictions_*.csv
+artifacts/full_raw_official/
+artifacts/repro_full_slice/
+artifacts/repro_sample_1gb/
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/

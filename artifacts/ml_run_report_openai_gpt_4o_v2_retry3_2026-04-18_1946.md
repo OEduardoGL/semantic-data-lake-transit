@@ -1,0 +1,20 @@
+# ML Run Report
+- timestamp: `2026-04-18T19:46:34.230035`
+- model_label: `openai_gpt_4o_v2_retry3`
+- source_file: `/home/eduardo/code/reproducao-artigo/tcc/code/generated/ml_retry_openai_gpt_4o_attempt3_2026-04-18_1943.py`
+- input_path: `s3a://transport/gold/final_table`
+- elapsed_sec: `1.258766`
+- mae: `1.0265557211952976`
+- rmse: `3.4723683998823884`
+- wape: `1.491725357506267`
+- medae: `0.4306405398153287`
+- mape_secondary: `None`
+- baseline_mae: `0.6881667030929887`
+- baseline_rmse: `3.570374741259342`
+- baseline_wape: `1.0`
+- baseline_medae: `None`
+- baseline_mape_secondary: `None`
+- metrics_csv: `/home/eduardo/code/reproducao-artigo/tcc/artifacts/metrics_ml_openai_gpt_4o_v2_retry3_2026-04-18_1946.csv`
+- predictions_csv: `/home/eduardo/code/reproducao-artigo/tcc/artifacts/predictions_openai_gpt_4o_v2_retry3_2026-04-18_1946.csv`
+- neo4j_line_hour_csv: `/home/eduardo/code/reproducao-artigo/tcc/artifacts/neo4j_metrics_line_hour_openai_gpt_4o_v2_retry3_2026-04-18_1946.csv`
+- neo4j_vehicle_day_csv: `/home/eduardo/code/reproducao-artigo/tcc/artifacts/neo4j_metrics_vehicle_day_openai_gpt_4o_v2_retry3_2026-04-18_1946.csv`

@@ -1,0 +1,2 @@
+model_name,split_strategy,row_count_total,row_count_train,row_count_val,row_count_test,mae,rmse,mape,global_baseline
+baseline_median_by_line_timeband,temporal_70_15_15,374632,262242,56195,56195,0.5781678505742694,3.6652676899064343,80.3378924138016,0.0

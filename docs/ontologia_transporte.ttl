@@ -1,0 +1,205 @@
+@prefix tcc: <http://example.org/transporte#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+tcc:OntologiaTransporte a owl:Ontology ;
+  rdfs:label "Ontologia de Transporte Publico - projeto"@pt ;
+  rdfs:comment "Modelo semantico inicial para eventos AVL, recursos operacionais e entidades de transporte."@pt .
+
+#################################################################
+# Classes (nucleo semantico)
+#################################################################
+
+tcc:EventoAVL a owl:Class ;
+  rdfs:label "Evento AVL"@pt ;
+  rdfs:comment "Evento observado no ecossistema AVL (GPS/sensores/operacional/tarifa)."@pt .
+
+tcc:EventoGPS a owl:Class ;
+  rdfs:subClassOf tcc:EventoAVL ;
+  rdfs:label "Evento GPS"@pt .
+
+tcc:EventoParada a owl:Class ;
+  rdfs:subClassOf tcc:EventoAVL ;
+  rdfs:label "Evento de Parada"@pt .
+
+tcc:EventoTarifa a owl:Class ;
+  rdfs:subClassOf tcc:EventoAVL ;
+  rdfs:label "Evento de Tarifa"@pt .
+
+tcc:EventoOperacional a owl:Class ;
+  rdfs:subClassOf tcc:EventoAVL ;
+  rdfs:label "Evento Operacional"@pt .
+
+tcc:Linha a owl:Class ;
+  rdfs:label "Linha de Onibus"@pt .
+
+tcc:Veiculo a owl:Class ;
+  rdfs:label "Veiculo"@pt .
+
+tcc:Empresa a owl:Class ;
+  rdfs:label "Empresa Operadora"@pt .
+
+tcc:Garagem a owl:Class ;
+  rdfs:label "Garagem"@pt .
+
+tcc:JornadaProgramacao a owl:Class ;
+  rdfs:label "Jornada/Programacao"@pt ;
+  rdfs:comment "Representa o identificador de tabela de programacao da operacao."@pt .
+
+tcc:PontoParada a owl:Class ;
+  rdfs:label "Ponto de Parada"@pt .
+
+tcc:TipoMensagemAVL a owl:Class ;
+  rdfs:label "Tipo de Mensagem AVL"@pt .
+
+#################################################################
+# Relacoes principais (Object Properties)
+#################################################################
+
+tcc:temLinha a owl:ObjectProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range tcc:Linha ;
+  rdfs:label "tem linha"@pt .
+
+tcc:temVeiculo a owl:ObjectProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range tcc:Veiculo ;
+  rdfs:label "tem veiculo"@pt .
+
+tcc:temEmpresa a owl:ObjectProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range tcc:Empresa ;
+  rdfs:label "tem empresa"@pt .
+
+tcc:temGaragem a owl:ObjectProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range tcc:Garagem ;
+  rdfs:label "tem garagem"@pt .
+
+tcc:temJornadaProgramacao a owl:ObjectProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range tcc:JornadaProgramacao ;
+  rdfs:label "tem jornada/programacao"@pt .
+
+tcc:ocorreNoPonto a owl:ObjectProperty ;
+  rdfs:domain tcc:EventoParada ;
+  rdfs:range tcc:PontoParada ;
+  rdfs:label "ocorre no ponto"@pt .
+
+tcc:temTipoMensagem a owl:ObjectProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range tcc:TipoMensagemAVL ;
+  rdfs:label "tem tipo de mensagem"@pt .
+
+#################################################################
+# Atributos essenciais (Data Properties)
+#################################################################
+
+tcc:eventId a owl:DatatypeProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range xsd:string ;
+  rdfs:label "identificador do evento"@pt .
+
+tcc:eventTs a owl:DatatypeProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range xsd:long ;
+  rdfs:label "timestamp unix do evento"@pt .
+
+tcc:eventDate a owl:DatatypeProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range xsd:date ;
+  rdfs:label "data canonica do evento"@pt .
+
+tcc:gpsIndex a owl:DatatypeProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range xsd:int ;
+  rdfs:label "indice do ponto GPS no evento"@pt .
+
+tcc:latitude a owl:DatatypeProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range xsd:double ;
+  rdfs:label "latitude normalizada"@pt .
+
+tcc:longitude a owl:DatatypeProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range xsd:double ;
+  rdfs:label "longitude normalizada"@pt .
+
+tcc:velocidade a owl:DatatypeProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range xsd:double ;
+  rdfs:label "velocidade observada"@pt .
+
+tcc:sentidoViagem a owl:DatatypeProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range xsd:string ;
+  rdfs:label "sentido da viagem"@pt .
+
+tcc:gpsSinal a owl:DatatypeProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range xsd:string ;
+  rdfs:label "qualidade do sinal GPS"@pt .
+
+tcc:gpsIsInvalid a owl:DatatypeProperty ;
+  rdfs:domain tcc:EventoAVL ;
+  rdfs:range xsd:boolean ;
+  rdfs:label "flag de GPS invalido (sem descarte automatico)"@pt .
+
+#################################################################
+# Regras semanticas (Bloco B)
+#################################################################
+
+tcc:RegraSemantica a owl:Class ;
+  rdfs:label "Regra Semantica"@pt ;
+  rdfs:comment "Regra operacional usada para padronizar a construcao de dados analiticos."@pt .
+
+tcc:ruleCode a owl:DatatypeProperty ;
+  rdfs:domain tcc:RegraSemantica ;
+  rdfs:range xsd:string ;
+  rdfs:label "codigo da regra"@pt .
+
+tcc:ruleDescription a owl:DatatypeProperty ;
+  rdfs:domain tcc:RegraSemantica ;
+  rdfs:range xsd:string ;
+  rdfs:label "descricao da regra"@pt .
+
+tcc:rulePriority a owl:DatatypeProperty ;
+  rdfs:domain tcc:RegraSemantica ;
+  rdfs:range xsd:int ;
+  rdfs:label "prioridade de avaliacao da regra"@pt .
+
+tcc:ruleFallbackSequence a owl:DatatypeProperty ;
+  rdfs:domain tcc:RegraSemantica ;
+  rdfs:range xsd:string ;
+  rdfs:label "sequencia de fallback da regra"@pt .
+
+tcc:ruleAppliesTo a owl:ObjectProperty ;
+  rdfs:domain tcc:RegraSemantica ;
+  rdfs:range tcc:EventoAVL ;
+  rdfs:label "regra aplicada a"@pt .
+
+# Regra 1: fallback de chaves
+tcc:RegraFallbackChaves a tcc:RegraSemantica ;
+  tcc:ruleCode "R_FALLBACK_KEYS_01" ;
+  tcc:rulePriority 1 ;
+  tcc:ruleDescription "Extracao de chaves com prioridade em valores de avlHeader.validador; se ausentes, aplicar fallback tolerante para preservar o evento."@pt ;
+  tcc:ruleFallbackSequence "id_empresa: id_empresa -> -1 ; cod_linha: cod_linha -> -1 ; cod_veiculo: cod_veiculo -> -1 ; jornada: cod_tabela_programacao -> null ; sentido: viagem_sentido -> null" ;
+  tcc:ruleAppliesTo tcc:EventoAVL .
+
+# Regra 2: timestamp canonico
+tcc:RegraTimestampCanonico a tcc:RegraSemantica ;
+  tcc:ruleCode "R_CANONICAL_TS_01" ;
+  tcc:rulePriority 2 ;
+  tcc:ruleDescription "Usar event_ts (derivado de timestamp) como tempo canonico para analise e particionamento; manter created_at_origem e created_at_ingestao para auditoria e lineage."@pt ;
+  tcc:ruleFallbackSequence "event_ts -> created_at_origem -> created_at_ingestao" ;
+  tcc:ruleAppliesTo tcc:EventoAVL .
+
+# Regra 3: tratamento de GPS invalido
+tcc:RegraGPSInvalido a tcc:RegraSemantica ;
+  tcc:ruleCode "R_GPS_INVALID_01" ;
+  tcc:rulePriority 3 ;
+  tcc:ruleDescription "Pontos com sinal invalido ou coordenada ausente/fora de faixa nao devem ser descartados automaticamente; registrar flag semantica gpsIsInvalid para filtragem analitica posterior."@pt ;
+  tcc:ruleFallbackSequence "gpsIsInvalid=true quando gps_sinal indicar invalidez, latitude/longitude forem nulas ou fora de faixa" ;
+  tcc:ruleAppliesTo tcc:EventoAVL .

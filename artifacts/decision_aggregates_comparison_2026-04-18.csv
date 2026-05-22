@@ -1,0 +1,5 @@
+comparison_group,old_stage,old_source,old_key,old_value,old_n_registros,new_stage,new_source,new_key,new_value,new_n_registros
+line_ranking,12,openai_retry2,cod_linha=958,pred_atraso_aproximado_min=1.017714,180,12.1,llama_v2_retry2,cod_linha=150,pred_atraso_aproximado_min=2.143987,15
+hour_ranking,12,openai_retry2,hour=23,pred_atraso_aproximado_min=0.588284,3241,12.1,llama_v2_retry2,hour=23,pred_atraso_aproximado_min=1.029320,2816
+vehicle_instability,12,openai_retry2,cod_veiculo=10411,mean_abs_gap_pred_real=67.646642,1,12.1,llama_v2_retry2,cod_veiculo=9974,mean_abs_gap_pred_real=10.682689,10
+segment_error,12,openai_retry2,cod_linha=70|cod_veiculo=4292|hour=23,mean_abs_error=163.514150,1,12.1,llama_v2_retry2,cod_linha=625|cod_veiculo=3333|hour=20,mean_abs_error=31.524338,5

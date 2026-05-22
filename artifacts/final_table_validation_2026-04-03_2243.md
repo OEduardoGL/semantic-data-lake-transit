@@ -1,0 +1,46 @@
+# FinalTable Validation
+- timestamp: 2026-04-03T22:43:00
+- path: `s3a://transport/gold/final_table`
+- status: `ok`
+- row_count: `375099`
+- null_target: `467`
+- non_null_target: `374632`
+- null_target_pct: `0.1245%`
+- target_quality_status: `ok (<= 10%)`
+- columns:
+  - `cod_linha`
+  - `cod_veiculo`
+  - `id_empresa`
+  - `viagem_sentido`
+  - `janela_5min`
+  - `latitude_media`
+  - `longitude_media`
+  - `velocidade_media`
+  - `gps_invalid_pct`
+  - `qtd_eventos_gps`
+  - `qtd_eventos_stop`
+  - `max_satelites`
+  - `headway_observado_min`
+  - `headway_referencia_min`
+  - `atraso_aproximado_min`
+  - `event_dt`
+- schema:
+  - `cod_linha`: `int`
+  - `cod_veiculo`: `int`
+  - `id_empresa`: `int`
+  - `viagem_sentido`: `string`
+  - `janela_5min`: `timestamp`
+  - `latitude_media`: `double`
+  - `longitude_media`: `double`
+  - `velocidade_media`: `double`
+  - `gps_invalid_pct`: `double`
+  - `qtd_eventos_gps`: `bigint`
+  - `qtd_eventos_stop`: `bigint`
+  - `max_satelites`: `int`
+  - `headway_observado_min`: `double`
+  - `headway_referencia_min`: `double`
+  - `atraso_aproximado_min`: `double`
+  - `event_dt`: `date`
+- observacoes:
+  - `viagem_sentido` aparece com fallback `ND` em parte relevante das linhas.
+  - `gps_invalid_pct` varia entre janelas e deve ser usada como feature/indicador de qualidade.

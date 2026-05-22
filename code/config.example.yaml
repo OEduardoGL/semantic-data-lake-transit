@@ -1,0 +1,89 @@
+project:
+  name: "semantic-data-lake-transit"
+  environment: "local"
+  timezone: "America/Fortaleza"
+
+paths:
+  bronze_input: "s3a://transport/bronze/messages_fortaleza.json"
+  silver_base: "s3a://transport/silver"
+  gold_base: "s3a://transport/gold"
+  mart_base: "s3a://transport/mart"
+  artifacts_local: "../artifacts"
+  figures_local: "../figures"
+  prompts_local: "../prompts"
+
+spark:
+  app_name: "tcc-avl-pipeline"
+  master: "local[*]"
+  log_level: "WARN"
+  shuffle_partitions: 200
+  adaptive_enabled: true
+  session_timezone: "America/Fortaleza"
+  checkpoint_dir: "s3a://transport/tmp/checkpoints"
+  write_mode: "overwrite"
+  silver_format: "parquet"
+  gold_format: "parquet"
+
+s3:
+  endpoint: "http://localhost:9000"
+  access_key: "CHANGE_ME_MINIO_ACCESS_KEY"
+  secret_key: "CHANGE_ME_MINIO_SECRET"
+  path_style_access: true
+  ssl_enabled: false
+  # Ajuste estes JARs se necessario para seu ambiente Spark/Hadoop.
+  # Se usar pyspark local e falhar no S3A, testar versoes compativeis.
+  extra_packages:
+    - "org.apache.hadoop:hadoop-aws:3.3.4"
+    - "com.amazonaws:aws-java-sdk-bundle:1.12.262"
+
+neo4j:
+  uri: "bolt://localhost:7687"
+  user: "neo4j"
+  password: "CHANGE_ME_NEO4J_PASSWORD"
+  database: "neo4j"
+
+llm:
+  primary_provider: "openai"
+  primary_model: "gpt-4o"
+  comparison_provider: "openrouter"
+  comparison_model: "meta-llama/llama-3.3-70b-instruct"
+  temperature: 0.2
+  max_retries_wrangling: 3
+  max_retries_ml: 3
+
+pipeline:
+  sample_mode: true
+  date_filter_enabled: false
+  date_from: null
+  date_to: null
+  required_columns_final_table:
+    - "event_dt"
+    - "cod_linha"
+    - "cod_veiculo"
+    - "janela_5min"
+    - "headway_observado_min"
+    - "headway_referencia_min"
+    - "atraso_aproximado_min"
+
+ml:
+  target: "atraso_aproximado_min"
+  split_strategy: "temporal"
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  random_seed: 42
+  baseline: "median_by_line_timeband"
+  prediction_horizon: "next_window_same_line_vehicle"
+  split_order: "chronological_no_shuffle"
+  leakage_guard: "forbid_current_target_and_current_headway"
+  metrics:
+    - "mae"
+    - "rmse"
+    - "wape"
+    - "medae"
+
+reproducibility:
+  official_ml_round: "v2"
+  official_valid_llm_result: "llama_3_3_70b_v2_retry2"
+  official_aggregate_package_ts: "2026-04-18_2044"
+  official_neo4j_run_id: "agg_final_2026_04_18_2044"

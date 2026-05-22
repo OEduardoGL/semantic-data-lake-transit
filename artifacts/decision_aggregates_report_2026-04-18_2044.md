@@ -1,0 +1,32 @@
+# Decision Aggregates Report
+- timestamp: `2026-04-18T20:44:11.049981`
+- baseline_predictions: `predictions_baseline_2026-04-18_1904.csv`
+- model_name: `llama_3_3_70b_v2_retry2`
+- model_predictions: `predictions_llama_3_3_70b_v2_retry2_2026-04-18_1924.csv`
+- model_line_hour: `neo4j_metrics_line_hour_llama_3_3_70b_v2_retry2_2026-04-18_1924.csv`
+- model_vehicle_day: `neo4j_metrics_vehicle_day_llama_3_3_70b_v2_retry2_2026-04-18_1924.csv`
+- min_line_records: `10`
+- min_line_hour_records: `5`
+- min_segment_records: `5`
+- min_vehicle_records: `10`
+- baseline_invalid_rows_dropped: `0`
+- model_invalid_rows_dropped: `0`
+- top_line: `150`
+- top_line_pred_delay: `2.143986953221344`
+- top_hour: `23`
+- top_hour_pred_delay: `1.0293203799721082`
+- top_segment_line: `625`
+- top_segment_vehicle: `3333`
+- top_segment_abs_error: `31.524337895519693`
+- top_vehicle_instability: `9974`
+- top_vehicle_abs_gap: `10.682689467552303`
+
+## Outputs
+- `/home/eduardo/code/reproducao-artigo/tcc/artifacts/neo4j_metrics_line_hour_final_2026-04-18_2044.csv`
+- `/home/eduardo/code/reproducao-artigo/tcc/artifacts/neo4j_metrics_line_ranking_2026-04-18_2044.csv`
+- `/home/eduardo/code/reproducao-artigo/tcc/artifacts/neo4j_metrics_hour_ranking_2026-04-18_2044.csv`
+- `/home/eduardo/code/reproducao-artigo/tcc/artifacts/neo4j_metrics_segment_error_2026-04-18_2044.csv`
+- `/home/eduardo/code/reproducao-artigo/tcc/artifacts/neo4j_metrics_vehicle_instability_2026-04-18_2044.csv`
+- `/home/eduardo/code/reproducao-artigo/tcc/artifacts/neo4j_metrics_line_hour_compare_2026-04-18_2044.csv`
+- `/home/eduardo/code/reproducao-artigo/tcc/artifacts/neo4j_metrics_vehicle_day_llama_3_3_70b_v2_retry2_ref_2026-04-18_2044.csv`
+- `/home/eduardo/code/reproducao-artigo/tcc/artifacts/neo4j_metrics_line_hour_llama_3_3_70b_v2_retry2_ref_2026-04-18_2044.csv`
