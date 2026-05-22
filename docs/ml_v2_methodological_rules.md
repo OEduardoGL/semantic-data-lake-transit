@@ -1,84 +1,84 @@
-# Regras Metodologicas da Rodada 2 de ML
+# Regras Metodológicas da Rodada 2 de ML
 
 ## Objetivo
 Definir regras formais para a rodada 2 de ML, respondendo aos problemas observados na rodada 1:
 - `MAPE` inadequado para o target;
 - underfitting da OpenAI;
-- suspeita de vazamento/trivializacao na Llama;
+- suspeita de vazamento/trivialização no pipeline Llama;
 - ambiguidade sobre o que exatamente o modelo deve prever.
 
 Estas regras devem orientar:
 - o `Prompt 2 v2`;
-- a geracao de codigo pelas LLMs;
-- a execucao e comparacao da rodada 2;
-- a comparacao tecnica da rodada 2.
+- a geração de código pelas LLMs;
+- a execução e comparação da rodada 2;
+- a comparação técnica da rodada 2.
 
-## Metricas oficiais da rodada 2
+## Métricas adotadas na rodada 2
 
-### Metricas principais
+### Métricas principais
 - `MAE`
-  - metrica principal de erro absoluto medio.
-  - e a mais interpretavel para o problema, porque o target esta em minutos.
+  - métrica principal de erro absoluto médio.
+  - é a mais interpretável para o problema, porque o target está em minutos.
 
 - `RMSE`
-  - metrica complementar para penalizar erros grandes.
-  - ajuda a mostrar se o modelo erra pouco na media, mas falha muito em alguns casos extremos.
+  - métrica complementar para penalizar erros grandes.
+  - ajuda a mostrar se o modelo erra pouco na média, mas falha muito em alguns casos extremos.
 
 - `WAPE`
-  - metrica percentual principal da rodada 2.
-  - definicao:
+  - métrica percentual principal da rodada 2.
+  - definição:
     - `WAPE = sum(|y_true - y_pred|) / sum(|y_true|)`
   - vantagem:
-    - e muito mais estavel do que `MAPE` quando existem muitos zeros no target.
+    - é muito mais estável do que `MAPE` quando existem muitos zeros no target.
 
-### Metrica opcional
+### Métrica opcional
 - `MedAE` (`Median Absolute Error`)
-  - metrica robusta a outliers.
-  - pode ser usada como apoio, mas nao precisa ser central na comparacao principal.
+  - métrica robusta a outliers.
+  - pode ser usada como apoio, mas não precisa ser central na comparação principal.
 
-### Politica sobre `MAPE`
-- `MAPE` deixa de ser metrica principal na rodada 2.
-- ele pode aparecer apenas como observacao secundaria ou apendice, com aviso explicito de baixa interpretabilidade.
-- a comparacao principal passa a usar:
+### Política sobre `MAPE`
+- `MAPE` não é adotado como métrica principal na rodada 2.
+- ele pode aparecer apenas como observação secundária ou apêndice, com aviso explícito de baixa interpretabilidade.
+- a comparação principal passa a usar:
   - `MAE`
   - `RMSE`
   - `WAPE`
 
-## Tratamento explicito para zeros no target
-- diagnostico da rodada 1:
-  - cerca de `57.6%` do target no teste e exatamente zero;
-  - cerca de `79.2%` a `79.4%` do target no teste esta em ate `0.1` minuto.
-- consequencia:
-  - metricas baseadas em divisao por `y_true` ficam instaveis.
+## Tratamento explícito para zeros no target
+- diagnóstico da rodada 1:
+  - cerca de `57.6%` do target no teste é exatamente zero;
+  - cerca de `79.2%` a `79.4%` do target no teste está em até `0.1` minuto.
+- consequência:
+  - métricas baseadas em divisão por `y_true` ficam instáveis.
 
-### Regra oficial
-- a rodada 2 deve tratar zeros como parte natural do problema, nao como excecao.
-- comparacoes percentuais devem usar `WAPE`, nao `MAPE`.
-- se alguma variante de percentual por observacao for reportada, ela deve:
+### Regra adotada
+- a rodada 2 deve tratar zeros como parte natural do problema, não como exceção.
+- comparações percentuais devem usar `WAPE`, não `MAPE`.
+- se alguma variante de percentual por observação for reportada, ela deve:
   - excluir explicitamente `y_true = 0`; ou
-  - ser apresentada apenas como analise secundaria, nunca como metrica principal.
+  - ser apresentada apenas como análise secundária, nunca como métrica principal.
 
-## Horizonte preditivo oficial
-- a tarefa da rodada 2 deixa de ser uma estimacao ambigua da propria linha corrente.
-- definicao oficial:
-  - prever `atraso_aproximado_min` da **proxima janela disponivel** para o mesmo par:
+## Horizonte preditivo adotado
+- a tarefa da rodada 2 substitui a estimação ambígua da própria linha corrente por um horizonte preditivo explícito.
+- definição adotada:
+  - prever `atraso_aproximado_min` da **próxima janela disponível** para o mesmo par:
     - `cod_linha`
     - `cod_veiculo`
 
-### Interpretacao
-- cada linha da base de treino representa o estado atual ou historico recente de uma linha/veiculo em uma janela de 5 minutos.
+### Interpretação
+- cada linha da base de treino representa o estado atual ou histórico recente de uma linha/veículo em uma janela de 5 minutos.
 - o target supervisionado deve ser deslocado para frente:
-  - `target_t_plus_1 = atraso_aproximado_min` da proxima `janela_5min` disponivel para o mesmo `cod_linha + cod_veiculo`.
+  - `target_t_plus_1 = atraso_aproximado_min` da próxima `janela_5min` disponível para o mesmo `cod_linha + cod_veiculo`.
 
-### Motivacao
-- isso reduz a ambiguidade metodologica da rodada 1.
-- isso obriga o modelo a usar informacao disponivel no presente/passado para prever o futuro imediato.
-- isso torna a avaliacao mais coerente com um uso operacional real.
+### Motivação
+- reduz a ambiguidade metodológica da rodada 1.
+- exige que o modelo use informação disponível no presente/passado para prever o futuro imediato.
+- torna a avaliação mais coerente com um uso operacional real.
 
-## Politica de features: permitidas e proibidas
+## Política de features: permitidas e proibidas
 
-### Features permitidas (linha atual ou historico passado)
-- identificacao e contexto:
+### Features permitidas (linha atual ou histórico passado)
+- identificação e contexto:
   - `cod_linha`
   - `cod_veiculo`
   - `id_empresa`
@@ -97,36 +97,36 @@ Estas regras devem orientar:
   - `latitude_media`
   - `longitude_media`
   - `headway_referencia_min`
-- derivadas historicas criadas por lag/rolling:
+- derivadas históricas criadas por lag/rolling:
   - `lag_1_velocidade_media`
   - `lag_1_gps_invalid_pct`
   - `lag_1_qtd_eventos_gps`
   - `lag_1_qtd_eventos_stop`
   - `lag_1_headway_observado_min`
   - `lag_1_atraso_aproximado_min`
-  - medias moveis de janelas anteriores por `cod_linha` ou `cod_linha + cod_veiculo`
+  - médias móveis de janelas anteriores por `cod_linha` ou `cod_linha + cod_veiculo`
 
 ### Features proibidas na mesma linha do target
-- `atraso_aproximado_min` contemporaneo da propria linha-alvo
-- `headway_observado_min` contemporaneo da propria linha-alvo
+- `atraso_aproximado_min` contemporâneo da própria linha-alvo
+- `headway_observado_min` contemporâneo da própria linha-alvo
 - qualquer coluna derivada diretamente de `atraso_aproximado_min` ou `headway_observado_min` na mesma linha do target
-- qualquer agregado calculado usando informacao do futuro ou do conjunto de teste
+- qualquer agregado calculado usando informação do futuro ou do conjunto de teste
 - qualquer encoder, imputador ou normalizador ajustado no dataframe completo antes do split temporal
 
 ### Regra de interpretabilidade
-- se houver necessidade de codificacao de categorias para treino:
-  - a codificacao nao deve sobrescrever os IDs originais usados nos artefatos finais;
+- se houver necessidade de codificação de categorias para treino:
+  - a codificação não deve sobrescrever os IDs originais usados nos artefatos finais;
   - `cod_linha` e `cod_veiculo` originais devem permanecer preservados em `predictions_df` e agregados.
 
-## Politica de split e ajuste de pre-processamento
+## Política de split e ajuste de pré-processamento
 - split obrigatoriamente temporal.
-- nenhuma etapa de preprocessamento pode ser ajustada no dataframe completo antes de separar treino/validacao/teste.
-- baseline, encoders, imputadores e quaisquer agregados historicos de apoio devem ser ajustados somente no treino.
+- nenhuma etapa de pré-processamento pode ser ajustada no dataframe completo antes de separar treino/validação/teste.
+- baseline, encoders, imputadores e quaisquer agregados históricos de apoio devem ser ajustados somente no treino.
 
-## Consequencia pratica para o Prompt 2 v2
+## Consequência prática para o Prompt 2 v2
 O `Prompt 2 v2` deve:
-- pedir explicitamente previsao da proxima janela;
-- proibir uso contemporaneo de colunas que praticamente definem o target;
-- substituir `MAPE` por `WAPE` como metrica percentual principal;
-- incentivar modelos mais fortes que regressao linear simples, mas ainda reproduziveis e explicaveis;
-- preservar IDs originais nos artefatos de saida.
+- pedir explicitamente previsão da próxima janela;
+- proibir uso contemporâneo de colunas que praticamente definem o target;
+- substituir `MAPE` por `WAPE` como métrica percentual principal;
+- incentivar modelos mais fortes que regressão linear simples, mas ainda reproduzíveis e explicáveis;
+- preservar IDs originais nos artefatos de saída.
