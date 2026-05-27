@@ -91,6 +91,11 @@ Consolidar, por etapa, o vínculo entre:
   - `artifacts/metrics_ml_baseline_2026-04-18_1904.csv`
   - `artifacts/metrics_ml_llama_3_3_70b_v2_retry2_2026-04-18_1924.csv`
   - `artifacts/ml_round_comparison_2026-04-18.md`
+  - `artifacts/ml_run_error_openai_gpt_4o_v2_2026-04-18_1905.md`
+  - `artifacts/ml_run_error_openai_gpt_4o_v2_retry1_2026-04-18_1920.md`
+  - `artifacts/ml_run_error_openai_gpt_4o_v2_retry2_2026-04-18_1935.md`
+  - `artifacts/ml_run_error_llama_3_3_70b_v2_2026-04-18_1906.md`
+  - `artifacts/ml_run_error_llama_3_3_70b_v2_retry1_2026-04-18_1921.md`
 - rastreabilidade:
   - evidências públicas listadas nesta seção
 
